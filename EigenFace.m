@@ -2,7 +2,7 @@ function [ isSucceed ] = EigenFace()
     isSucceed=0;
     strTrainPath = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\DataTraining';
     strLabelFile = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\DataTraining.dat';
-    soMau=1500;
+    soMau=3000;
     %doc du lieu train
     fid=fopen(strLabelFile);
     imageLabel=textscan(fid,'%s %s');

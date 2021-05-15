@@ -1,10 +1,10 @@
-demDatatraining=1001;
+demDataTraining=1001;
 save('demDataTraining.mat','demDataTraining');
 load('demDataTraining.mat');
-strTrainPathName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\BaseDataTrain';
+strTrainPathName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\Buon';
 strLabelFileName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\InfoData.dat';
 
-fullName = dir('C:\Users\Admin\Desktop\KLTN\KLTN2021\BaseDataTrain');
+fullName = dir('C:\Users\Admin\Desktop\KLTN\KLTN2021\Buon');
 fileID = fopen('InfoData.dat','w');
 leng=length(fullName);
 
@@ -24,8 +24,8 @@ for m = 1:leng
 end
 for k=3:leng
     I = imread(char(TrainingImagesLoad{k,1}));
-    pathName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\Buon\';
-    fileName = [pathname num2str(demDataTraining) '.jpg'];
+    pathName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\DataTesting\';
+    fileName = [pathName num2str(demDataTraining) '.jpg'];
     imwrite(I,fileName);
     demDataTraining = demDataTraining + 1;
     save('demDataTraining.mat','demDataTraining');
