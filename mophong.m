@@ -87,7 +87,6 @@ function varargout = mophong_OutputFcn(hObject, eventdata, handles)
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
 % Get default command line output from handles structure
 varargout{1} = handles.output;
 
@@ -315,12 +314,12 @@ for  i = 1:size(imageFaceDetect,1)
             [ik jk]  = find(imageMouthDetect(:,2) == maxValue);
             if imageMouthDetect(ik,2)>x/2
                 if imageMouthDetect(ik,2)<0.65*x
-                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(ik,1),imageFaceDetect(i,2)+imageMouthDetect(ik,2)-10+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
-                    I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-10+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
+                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(ik,1),imageFaceDetect(i,2)+imageMouthDetect(ik,2)-15+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
+                    I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-15+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
                     figure(4), imshow(I);
                 else
-                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(ik,1),imageFaceDetect(i,2)+imageMouthDetect(ik,2)-10,imageMouthDetect(ik,3),imageMouthDetect(ik,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');                    
-                    I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-10,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
+                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(ik,1),imageFaceDetect(i,2)+imageMouthDetect(ik,2)-15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');                    
+                    I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
                     figure(4), imshow(I);
                 end
                 %nhan dien cam xuc
@@ -361,12 +360,12 @@ for  i = 1:size(imageFaceDetect,1)
         elseif j==1
             if imageMouthDetect(1,2)>x/2
                 if imageMouthDetect(1,2)< 0.65*x
-                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-10+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
-                    I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-10+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
+                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-15+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
+                    I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-15+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
                     figure(4),imshow(I);
                 else
-                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-10,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
-                    I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-10,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
+                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-15,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
+                    I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-15,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
                     figure(4), imshow(I);
                 end
             %nhan dang cam xuc
@@ -583,12 +582,12 @@ load('demAnh.mat');
                         [ik jk]  = find(imageMouthDetect(:,2) == maxValue);
                         if imageMouthDetect(ik,2)>x/2
                             if imageMouthDetect(ik,2)<0.65*x
-                                rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(ik,1),imageFaceDetect(i,2)+imageMouthDetect(ik,2)-10+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
-                                I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-10+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
+                                rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(ik,1),imageFaceDetect(i,2)+imageMouthDetect(ik,2)-15+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
+                                I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-15+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
                                 figure(4), imshow(I);
                             else
-                                rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(ik,1),imageFaceDetect(i,2)+imageMouthDetect(ik,2)-10,imageMouthDetect(ik,3),imageMouthDetect(ik,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');                    
-                                I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-10,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
+                                rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(ik,1),imageFaceDetect(i,2)+imageMouthDetect(ik,2)-15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');                    
+                                I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
                                 figure(4), imshow(I);
                         end
                     	%nhan dien cam xuc
@@ -629,12 +628,12 @@ load('demAnh.mat');
                     elseif j==1
                         if imageMouthDetect(1,2)>x/2
                             if imageMouthDetect(1,2)< 0.65*x
-                                rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-10+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
-                                I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-10+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
+                                rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-15+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
+                                I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-15+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
                                 figure(4),imshow(I);
                             else
-                            rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-10,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
-                            I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-10,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
+                            rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-15,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
+                            I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-15,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
                             figure(4), imshow(I);
                         end
                         %nhan dang cam xuc
@@ -691,7 +690,7 @@ load('demAnh.mat');
             save('bienDem.mat','bienDem');
             set(handles.uitable1,'Data',data); 
         end
-        pause(5);
+        pause(2);
             else
                 break
         end 

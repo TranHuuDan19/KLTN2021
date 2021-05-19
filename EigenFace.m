@@ -29,9 +29,6 @@ function [ isSucceed ] = EigenFace()
     [C,S,L]    = princomp(image,'econ');%performing PCA
     EigenRange = 1:(soMau-1);% tuy vao so luong dau vao
     C = C(:,EigenRange);
-    figure(3), imshow(finalImage);
-    figure(4), imshow(readImage);
-    figure(5), imshow(imageConvertGray);
 save('soMau.mat','soMau');
 save('C.mat','C');
 save('S.mat','S');
