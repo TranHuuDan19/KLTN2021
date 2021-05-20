@@ -22,7 +22,7 @@ function varargout = mophong(varargin)
 
 % Edit the above text to modify the response to help mophong
 
-% Last Modified by GUIDE v2.5 15-May-2021 20:16:03
+% Last Modified by GUIDE v2.5 20-May-2021 13:25:49
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -51,6 +51,7 @@ function mophong_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   unrecognized PropertyName/PropertyValue pairs from the
 %            command line (see VARARGIN)
+goiLED('NULL');
 global CAMON;
 load('MODE.mat');
 MODE = 2
@@ -342,7 +343,7 @@ for  i = 1:size(imageFaceDetect,1)
                 otherTest(1,k)=sqrt((testImage'-S(k,EigenRange)')'*(testImage'-S(k,EigenRange)'));
             end
             [minTest,minTestPosition] = min(otherTest,[],2)
-            Emotion = cell2mat(imageLabel{1,2}(minTestPosition))
+            Emotion = cell2mat(imageLabel{1,2}(minTestPosition))           
             time    = clock;
             day  = sprintf('%d-%d-%d',time(3),time(2),time(1));
             hour = sprintf('%d:%d:%d',time(4),time(5),round(time(6)));       
@@ -351,6 +352,7 @@ for  i = 1:size(imageFaceDetect,1)
             data{bienDem,2} = hour;
             data{bienDem,3} = Emotion;
             save('duLieu.mat','data');
+            goiLED(Emotion);
             load('duLieu.mat');
             bienDem = bienDem + 1;
             save('bienDem.mat','bienDem');
@@ -397,6 +399,7 @@ for  i = 1:size(imageFaceDetect,1)
             data{bienDem,2} = hour;
             data{bienDem,3} = Emotion;
             save('duLieu.mat','data');
+            goiLED(Emotion);
             load('duLieu.mat');
             bienDem = bienDem + 1;
             save('bienDem.mat','bienDem');
@@ -417,6 +420,7 @@ if(bienDem < bienDem_1)
       data{bienDem,2} = hour;
       data{bienDem,3} = Emotion;
       save('duLieu.mat','data');
+       goiLED(Emotion);
       load('duLieu.mat');
       bienDem = bienDem + 1;
       save('bienDem.mat','bienDem');
@@ -620,6 +624,8 @@ load('demAnh.mat');
                         data{bienDem,3} = Emotion;
                         save('duLieu.mat','data');
                         load('duLieu.mat');
+                        % goi ham dieu khien led
+                        goiLED(Emotion);
                         bienDem = bienDem + 1;
                         save('bienDem.mat','bienDem');
                         set(handles.uitable1,'Data',data); 
@@ -665,6 +671,8 @@ load('demAnh.mat');
                     data{bienDem,2} = hour;
                     data{bienDem,3} = Emotion;
                     save('duLieu.mat','data');
+                    % goi ham dieu khien led
+                    goiLED(Emotion);
                     load('duLieu.mat');
                     bienDem = bienDem + 1;
                     save('bienDem.mat','bienDem');
@@ -690,7 +698,7 @@ load('demAnh.mat');
             save('bienDem.mat','bienDem');
             set(handles.uitable1,'Data',data); 
         end
-        pause(2);
+        pause(3);
             else
                 break
         end 
@@ -702,5 +710,28 @@ guidata(hObject,handles);
 % --- Executes during object creation, after setting all properties.
 function autochup_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to autochup (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+
+% --- Executes during object creation, after setting all properties.
+function pushbutton15_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to pushbutton15 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+
+% --- Executes on button press in trangthai.
+function trangthai_Callback(hObject, eventdata, handles)
+% hObject    handle to trangthai (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+fid = fopen('TrangThai.dat','r')';
+noidung = fread(fid,100,'uint8=>char')'
+f=msgbox(noidung)
+
+% --- Executes during object creation, after setting all properties.
+function trangthai_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to trangthai (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
