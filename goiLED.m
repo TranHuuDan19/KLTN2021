@@ -1,6 +1,6 @@
 function [ output_args ] = goiLED(LedValueInput)
 output_args=0;
-x = serial('COM9');
+x = serial('COM6');
 int = LedValueInput;
 if strcmp(int, 'NULL')==1
     LedValue = 0;

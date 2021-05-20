@@ -1,8 +1,8 @@
-bienDemDataTraining=1001;
+bienDemDataTraining=4032;
 save('bienDemDataTraining.mat','bienDemDataTraining');
 load('bienDemDataTraining.mat');
-strTrainPathName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\BaseDataBackUp\Buon';
-strLabelFileName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\InfoData.dat';
+strTrainPathName = 'C:\Users\ADMIN\Desktop\KLTN\KLTN2021\BaseDataBackUp1\NgacNhien1';
+strLabelFileName = 'C:\Users\ADMIN\Desktop\KLTN\KLTN2021\InfoData.dat';
 fullName = dir(strTrainPathName);
 fileID = fopen('InfoData.dat','w');
 leng=length(fullName);
@@ -18,13 +18,13 @@ fid=fopen(strLabelFileName);
 imageTrainingLabel=textscan(fid,'%s');
 fclose(fid);
 
-for m=3:length(imageTrainingLabel{1,1})
+for m=1:length(imageTrainingLabel{1,1})
     TrainingImagesLoad{m,1} = strcat(strTrainPathName,'\',imageTrainingLabel{1,1}(m));
 end
 
 imageSize=[60,60];
 length(imageTrainingLabel{1,1})
-for k=1:length(imageTrainingLabel{1,1})
+for k=3:length(imageTrainingLabel{1,1})
     capCha          = imread(char(TrainingImagesLoad{k,1}));
     videoFrame      = capCha;
     FaceDetect      = vision.CascadeObjectDetector;
@@ -46,7 +46,7 @@ for k=1:length(imageTrainingLabel{1,1})
                         I  = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-10+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
                         I  = imresize(I,imageSize)
 %                       figure(2), imshow(I);
-                        pathName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\Buon\';
+                        pathName = 'C:\Users\ADMIN\Desktop\KLTN\KLTN2021\NgacNhien1\';
                         fileName = [pathName num2str(bienDemDataTraining) '.jpg'];
                         imwrite(I,filename);
                         bienDemDataTraining = bienDemDataTraining+1;
@@ -55,7 +55,7 @@ for k=1:length(imageTrainingLabel{1,1})
                         I=imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-10,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
                         I=imresize(I,imageSize)
 %                       figure(2), imshow(I);
-                        pathName='C:\Users\Admin\Desktop\KLTN\KLTN2021\Buon\';
+                        pathName='C:\Users\ADMIN\Desktop\KLTN\KLTN2021\NgacNhien1\';
                         filename=[pathName num2str(bienDemDataTraining) '.jpg'];
                         imwrite(I,filename);
                         bienDemDataTraining=bienDemDataTraining+1;
@@ -67,7 +67,7 @@ for k=1:length(imageTrainingLabel{1,1})
                         I  = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-10+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
                         I  = imresize(I,imageSize)
 %                       figure(2),imshow(I);
-                        pathName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\Buon\';
+                        pathName = 'C:\Users\ADMIN\Desktop\KLTN\KLTN2021\NgacNhien1\';
                         filename = [pathName num2str(bienDemDataTraining) '.jpg'];
                         imwrite(I,filename);
                         biendem_datatraining=biendem_datatraining+1;
@@ -76,7 +76,7 @@ for k=1:length(imageTrainingLabel{1,1})
                         I  = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-10,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
                         I  = imresize(I,imageSize)
 %                       figure(2), imshow(I);
-                        pathName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\Buon\';
+                        pathName = 'C:\Users\ADMIN\Desktop\KLTN\KLTN2021\NgacNhien1\';
                         fileName = [pathName num2str(bienDemDataTraining) '.jpg'];
                         imwrite(I,fileName);
                         biendem_datatraining = biendem_datatraining + 1;

@@ -1,6 +1,6 @@
 function [isSucceed] = testLed(status_led1x)
 isSucceed=0;
-a=arduino('COM9','Uno');
+a=arduino('COM6','Uno');
 
 status_led = str2num(status_led1x);
 save('status_led.mat','status_led');
