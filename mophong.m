@@ -51,7 +51,7 @@ function mophong_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   unrecognized PropertyName/PropertyValue pairs from the
 %            command line (see VARARGIN)
-goiLED('NULL');
+goiBL('NULL');
 global CAMON;
 load('MODE.mat');
 MODE = 2
@@ -352,11 +352,13 @@ for  i = 1:size(imageFaceDetect,1)
             data{bienDem,2} = hour;
             data{bienDem,3} = Emotion;
             save('duLieu.mat','data');
-            goiLED(Emotion);
+          
             load('duLieu.mat');
             bienDem = bienDem + 1;
             save('bienDem.mat','bienDem');
             set(handles.uitable1,'Data',data); 
+            %goi ham dieu khien xe
+            goiBL(Emotion);
             %nhan dien xong cam xuc
             end
         elseif j==1
@@ -399,11 +401,12 @@ for  i = 1:size(imageFaceDetect,1)
             data{bienDem,2} = hour;
             data{bienDem,3} = Emotion;
             save('duLieu.mat','data');
-            goiLED(Emotion);
             load('duLieu.mat');
             bienDem = bienDem + 1;
             save('bienDem.mat','bienDem');
             set(handles.uitable1,'Data',data); 
+            % goi ham dieu khien xe
+            goiBL(Emotion);
             end
         end
     end
@@ -420,11 +423,12 @@ if(bienDem < bienDem_1)
       data{bienDem,2} = hour;
       data{bienDem,3} = Emotion;
       save('duLieu.mat','data');
-       goiLED(Emotion);
       load('duLieu.mat');
       bienDem = bienDem + 1;
       save('bienDem.mat','bienDem');
       set(handles.uitable1,'Data',data); 
+      % goi ham dieu khien xe
+      goiBL(Emotion);
 end
 % --- Executes during object creation, after setting all properties.
 function ketQua_CreateFcn(hObject, eventdata, handles)
@@ -624,11 +628,11 @@ load('demAnh.mat');
                         data{bienDem,3} = Emotion;
                         save('duLieu.mat','data');
                         load('duLieu.mat');
-                        % goi ham dieu khien led
-                        goiLED(Emotion);
                         bienDem = bienDem + 1;
                         save('bienDem.mat','bienDem');
-                        set(handles.uitable1,'Data',data); 
+                        set(handles.uitable1,'Data',data);
+                        % goi ham dieu khien xe
+                        goiBL(Emotion);
                         %nhan dien xong cam xuc
                         end
                     elseif j==1
@@ -671,12 +675,12 @@ load('demAnh.mat');
                     data{bienDem,2} = hour;
                     data{bienDem,3} = Emotion;
                     save('duLieu.mat','data');
-                    % goi ham dieu khien led
-                    goiLED(Emotion);
                     load('duLieu.mat');
                     bienDem = bienDem + 1;
                     save('bienDem.mat','bienDem');
-                    set(handles.uitable1,'Data',data); 
+                    set(handles.uitable1,'Data',data);
+                    % goi ham dieu khien xe
+                    goiBL(Emotion);
                         end
                     end
                 end
