@@ -1,23 +1,24 @@
-function [ output_args ] = goiBL(LedValueInput)
-output_args=0;
+ function [ output_args ] = goiBL(Input)
+ output_args=0;
 
 global bt;
-instrhwinfo('Bluetooth','HC-06');
-bt = Bluetooth('HC-06', 1);
-int = LedValueInput;
+int = Input;
 fopen(bt);
 
-if strcmp(int, 'NULL')==1
-    fprintf(bt, '0');
+if strcmp(int, 'Vui')==1  % xe dung
+    fprintf(bt, '0');  
 end
-if strcmp(int, 'Vui')==1
-    fprintf(bt, '1');
+
+if strcmp(int, 'Binh_Thuong')==1 % xe chay toi
+    fprintf(bt, '1'); 
 end
-if strcmp(int, 'Ngac_Nhien')==1
+
+if strcmp(int, 'Ngac_Nhien')==1 % xe quay phai
     fprintf(bt, '2');
 end
-if strcmp(int, 'Binh_Thuong')==1
-    fprintf(bt, '3');
-end
+
 fclose (bt);
 end
+
+
+

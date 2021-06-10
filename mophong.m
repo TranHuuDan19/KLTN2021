@@ -51,7 +51,10 @@ function mophong_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   unrecognized PropertyName/PropertyValue pairs from the
 %            command line (see VARARGIN)
-goiBL('NULL');
+%goiBL('NULL');
+global bt;
+instrhwinfo('Bluetooth','HC-06');
+bt = Bluetooth('HC-06', 1);
 global CAMON;
 load('MODE.mat');
 MODE = 2
