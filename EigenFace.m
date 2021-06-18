@@ -2,7 +2,7 @@ function [ isSucceed ] = EigenFace()
     isSucceed=0;
     strTrainPath = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\DataTraining';
     strLabelFile = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\DataTraining.dat';
-    soMau=3000;
+    soMau=3600;
     %doc du lieu train
     fid=fopen(strLabelFile);
     imageLabel=textscan(fid,'%s %s');
@@ -28,7 +28,7 @@ function [ isSucceed ] = EigenFace()
     image      =(image-meanImage*ones(1,numImage))'; % dau vao PCA
     [C,S,L]    = princomp(image,'econ');%performing PCA
     EigenRange = 1:(soMau-1);% tuy vao so luong dau vao
-    C = C(:,EigenRange);
+%     C = C(:,EigenRange);
 save('soMau.mat','soMau');
 save('C.mat','C');
 save('S.mat','S');

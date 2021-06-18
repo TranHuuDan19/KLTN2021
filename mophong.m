@@ -22,7 +22,7 @@ function varargout = mophong(varargin)
 
 % Edit the above text to modify the response to help mophong
 
-% Last Modified by GUIDE v2.5 20-May-2021 13:25:49
+% Last Modified by GUIDE v2.5 10-Jun-2021 22:46:22
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -51,10 +51,11 @@ function mophong_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   unrecognized PropertyName/PropertyValue pairs from the
 %            command line (see VARARGIN)
-%goiBL('NULL');
+
 global bt;
 instrhwinfo('Bluetooth','HC-06');
 bt = Bluetooth('HC-06', 1);
+
 global CAMON;
 load('MODE.mat');
 MODE = 2
@@ -313,17 +314,17 @@ for  i = 1:size(imageFaceDetect,1)
         imageMouthDetect = step(MouthDetect,J);
         %tim vung chua mouth
         j = size(imageMouthDetect,1);
-        if(j>1)
+        if j>1
             maxValue = max(imageMouthDetect(:,2));
             [ik jk]  = find(imageMouthDetect(:,2) == maxValue);
             if imageMouthDetect(ik,2)>x/2
                 if imageMouthDetect(ik,2)<0.65*x
-                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(ik,1),imageFaceDetect(i,2)+imageMouthDetect(ik,2)-15+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
-                    I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-15+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
+                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(ik,1),imageFaceDetect(i,2)+imageMouthDetect(ik,2)-10+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
+                    I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-10+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
                     figure(4), imshow(I);
                 else
-                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(ik,1),imageFaceDetect(i,2)+imageMouthDetect(ik,2)-15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');                    
-                    I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
+                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(ik,1),imageFaceDetect(i,2)+imageMouthDetect(ik,2)-10,imageMouthDetect(ik,3),imageMouthDetect(ik,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');                    
+                    I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-10,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
                     figure(4), imshow(I);
                 end
                 %nhan dien cam xuc
@@ -354,25 +355,24 @@ for  i = 1:size(imageFaceDetect,1)
             data{bienDem,1} = day;
             data{bienDem,2} = hour;
             data{bienDem,3} = Emotion;
-            save('duLieu.mat','data');
-          
+            save('duLieu.mat','data');        
             load('duLieu.mat');
             bienDem = bienDem + 1;
             save('bienDem.mat','bienDem');
             set(handles.uitable1,'Data',data); 
-            %goi ham dieu khien xe
-            goiBL(Emotion);
             %nhan dien xong cam xuc
+              %dieu khien xe
+            goiBL(Emotion);
             end
         elseif j==1
             if imageMouthDetect(1,2)>x/2
                 if imageMouthDetect(1,2)< 0.65*x
-                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-15+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
-                    I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-15+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
+                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-10+x/8,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
+                    I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-10+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
                     figure(4),imshow(I);
                 else
-                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-15,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
-                    I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-15,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
+                    rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-10,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
+                    I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-10,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
                     figure(4), imshow(I);
                 end
             %nhan dang cam xuc
@@ -407,8 +407,9 @@ for  i = 1:size(imageFaceDetect,1)
             load('duLieu.mat');
             bienDem = bienDem + 1;
             save('bienDem.mat','bienDem');
-            set(handles.uitable1,'Data',data); 
-            % goi ham dieu khien xe
+            set(handles.uitable1,'Data',data);
+            %nhan dien xong cam xuc
+              %dieu khien xe
             goiBL(Emotion);
             end
         end
@@ -430,7 +431,7 @@ if(bienDem < bienDem_1)
       bienDem = bienDem + 1;
       save('bienDem.mat','bienDem');
       set(handles.uitable1,'Data',data); 
-      % goi ham dieu khien xe
+        %dieu khien xe
       goiBL(Emotion);
 end
 % --- Executes during object creation, after setting all properties.
@@ -505,7 +506,7 @@ f = msgbox({
     '      5. Xuat File: Xuat Ra File .xls           ';
     '      6. Ket Qua: Dua Ra Cam Xuc Da Nhan Dang   ';
     '      7. Axes1: Hien Thi Camera                 ';
-    '      8. Axes1: Hien Thi Anh Chup Tu Camera     ';
+    '      8. Axes2: Hien Thi Anh Chup Tu Camera     ';
     '      9. Table1: Hien Thi Toan Bo Data Da Nhan Dang  ';
     },'Huong Dan');
 
@@ -594,11 +595,11 @@ load('demAnh.mat');
                         if imageMouthDetect(ik,2)>x/2
                             if imageMouthDetect(ik,2)<0.65*x
                                 rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(ik,1),imageFaceDetect(i,2)+imageMouthDetect(ik,2)-15+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
-                                I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-15+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
+                                I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-10+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
                                 figure(4), imshow(I);
                             else
                                 rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(ik,1),imageFaceDetect(i,2)+imageMouthDetect(ik,2)-15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');                    
-                                I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
+                                I = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-10,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
                                 figure(4), imshow(I);
                         end
                     	%nhan dien cam xuc
@@ -631,22 +632,21 @@ load('demAnh.mat');
                         data{bienDem,3} = Emotion;
                         save('duLieu.mat','data');
                         load('duLieu.mat');
+                        goiBL(Emotion);
                         bienDem = bienDem + 1;
                         save('bienDem.mat','bienDem');
-                        set(handles.uitable1,'Data',data);
-                        % goi ham dieu khien xe
-                        goiBL(Emotion);
+                        set(handles.uitable1,'Data',data); 
                         %nhan dien xong cam xuc
                         end
                     elseif j==1
                         if imageMouthDetect(1,2)>x/2
                             if imageMouthDetect(1,2)< 0.65*x
-                                rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-15+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
-                                I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-15+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
+                                rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-10+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
+                                I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-10+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
                                 figure(4),imshow(I);
                             else
-                            rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-15,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
-                            I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-15,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
+                            rectangle('Position',[imageFaceDetect(i,1)+imageMouthDetect(1,1),imageFaceDetect(i,2)+imageMouthDetect(1,2)-10,imageMouthDetect(1,3),imageMouthDetect(1,4)],'LineWidth',4,'LineStyle','-','EdgeColor','b');
+                            I = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-10,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
                             figure(4), imshow(I);
                         end
                         %nhan dang cam xuc
@@ -678,12 +678,11 @@ load('demAnh.mat');
                     data{bienDem,2} = hour;
                     data{bienDem,3} = Emotion;
                     save('duLieu.mat','data');
+                    goiBL(Emotion);
                     load('duLieu.mat');
                     bienDem = bienDem + 1;
                     save('bienDem.mat','bienDem');
-                    set(handles.uitable1,'Data',data);
-                    % goi ham dieu khien xe
-                    goiBL(Emotion);
+                    set(handles.uitable1,'Data',data); 
                         end
                     end
                 end
@@ -699,6 +698,7 @@ load('demAnh.mat');
             data{bienDem,1} = day;
             data{bienDem,2} = hour;
             data{bienDem,3} = Emotion;
+            goiBL(Emotion);
             save('duLieu.mat','data');
             load('duLieu.mat');
             bienDem = bienDem + 1;
@@ -742,3 +742,13 @@ function trangthai_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to trangthai (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
+
+
+% --- Executes during object deletion, before destroying properties.
+function figure1_DeleteFcn(hObject, eventdata, handles)
+% hObject    handle to figure1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+close ;
+delete axes1;
+delete axes;

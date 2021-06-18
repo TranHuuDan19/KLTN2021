@@ -17,8 +17,9 @@ if strcmp(int, 'Ngac_Nhien')==1 % xe quay phai
     fprintf(bt, '2');
 end
 
-fclose (bt);
+if strcmp(int, 'Gian_Du')==1 % xe chay lui
+    fprintf(bt, '3');
 end
 
-
-
+fclose (bt);
+end

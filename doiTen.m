@@ -1,10 +1,10 @@
-demDataTraining=1001;
+demDataTraining=2701;
 save('demDataTraining.mat','demDataTraining');
 load('demDataTraining.mat');
-strTrainPathName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\Buon';
+strTrainPathName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\GianDu';
 strLabelFileName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\InfoData.dat';
 
-fullName = dir('C:\Users\Admin\Desktop\KLTN\KLTN2021\Buon');
+fullName = dir('C:\Users\Admin\Desktop\KLTN\KLTN2021\GianDu');
 fileID = fopen('InfoData.dat','w');
 leng=length(fullName);
 

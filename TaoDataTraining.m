@@ -1,8 +1,8 @@
-bienDemDataTraining=4032;
+bienDemDataTraining=3000;
 save('bienDemDataTraining.mat','bienDemDataTraining');
 load('bienDemDataTraining.mat');
-strTrainPathName = 'C:\Users\ADMIN\Desktop\KLTN\KLTN2021\BaseDataBackUp1\NgacNhien1';
-strLabelFileName = 'C:\Users\ADMIN\Desktop\KLTN\KLTN2021\InfoData.dat';
+strTrainPathName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\tam';
+strLabelFileName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\InfoData.dat';
 fullName = dir(strTrainPathName);
 fileID = fopen('InfoData.dat','w');
 leng=length(fullName);
@@ -18,7 +18,7 @@ fid=fopen(strLabelFileName);
 imageTrainingLabel=textscan(fid,'%s');
 fclose(fid);
 
-for m=1:length(imageTrainingLabel{1,1})
+for m=3:length(imageTrainingLabel{1,1})
     TrainingImagesLoad{m,1} = strcat(strTrainPathName,'\',imageTrainingLabel{1,1}(m));
 end
 
@@ -32,7 +32,7 @@ for k=3:length(imageTrainingLabel{1,1})
     for i=1:size(imageFaceDetect,1)
         sizeImageFaceDetect = imageFaceDetect(i,3)*imageFaceDetect(i,4);
         if sizeImageFaceDetect > 7200
-            i1= size(imageFaceDetect,1);
+            i1= size(imageFaceDetect,1);    
             J=imcrop(videoFrame,[imageFaceDetect(i1,1),imageFaceDetect(i1,2),imageFaceDetect(i1,3),imageFaceDetect(i1,4)+15]);
             [x y]=size(J(:,:,1));
             MouthDetect      = vision.CascadeObjectDetector('Mouth','MergeThreshold',16);
@@ -46,16 +46,16 @@ for k=3:length(imageTrainingLabel{1,1})
                         I  = imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-10+x/15,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
                         I  = imresize(I,imageSize)
 %                       figure(2), imshow(I);
-                        pathName = 'C:\Users\ADMIN\Desktop\KLTN\KLTN2021\NgacNhien1\';
+                        pathName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\DataTesting\';
                         fileName = [pathName num2str(bienDemDataTraining) '.jpg'];
-                        imwrite(I,filename);
+                        imwrite(I,fileName);
                         bienDemDataTraining = bienDemDataTraining+1;
                         save('bienDemDataTraining.mat','bienDemDataTraining');
                     else
                         I=imcrop(J,[imageMouthDetect(ik,1),imageMouthDetect(ik,2)-10,imageMouthDetect(ik,3),imageMouthDetect(ik,4)]);
                         I=imresize(I,imageSize)
 %                       figure(2), imshow(I);
-                        pathName='C:\Users\ADMIN\Desktop\KLTN\KLTN2021\NgacNhien1\';
+                        pathName='C:\Users\Admin\Desktop\KLTN\KLTN2021\DataTesting\';
                         filename=[pathName num2str(bienDemDataTraining) '.jpg'];
                         imwrite(I,filename);
                         bienDemDataTraining=bienDemDataTraining+1;
@@ -67,7 +67,7 @@ for k=3:length(imageTrainingLabel{1,1})
                         I  = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-10+x/15,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
                         I  = imresize(I,imageSize)
 %                       figure(2),imshow(I);
-                        pathName = 'C:\Users\ADMIN\Desktop\KLTN\KLTN2021\NgacNhien1\';
+                        pathName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\DataTesting\';
                         filename = [pathName num2str(bienDemDataTraining) '.jpg'];
                         imwrite(I,filename);
                         biendem_datatraining=biendem_datatraining+1;
@@ -76,7 +76,7 @@ for k=3:length(imageTrainingLabel{1,1})
                         I  = imcrop(J,[imageMouthDetect(1,1),imageMouthDetect(1,2)-10,imageMouthDetect(1,3),imageMouthDetect(1,4)]);
                         I  = imresize(I,imageSize)
 %                       figure(2), imshow(I);
-                        pathName = 'C:\Users\ADMIN\Desktop\KLTN\KLTN2021\NgacNhien1\';
+                        pathName = 'C:\Users\Admin\Desktop\KLTN\KLTN2021\DataTesting\';
                         fileName = [pathName num2str(bienDemDataTraining) '.jpg'];
                         imwrite(I,fileName);
                         biendem_datatraining = biendem_datatraining + 1;
